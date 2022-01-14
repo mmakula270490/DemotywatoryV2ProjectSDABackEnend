@@ -15,7 +15,6 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping(path = "/api/users")
-    @CrossOrigin(origins = "*", maxAge = 3600)
     public void createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
 
         usersService.createUser(createUserRequest);
