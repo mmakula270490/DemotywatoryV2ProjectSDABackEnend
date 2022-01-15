@@ -20,10 +20,15 @@ public class UsersController {
         usersService.createUser(createUserRequest);
     }
 
-    @PutMapping(path = "api/users/{userId}/activate")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void activateUser(@PathVariable(name= "userId") Long userId) {
+    @GetMapping(path = "/logged")
+    @ResponseStatus(HttpStatus.OK)
+    public void loggedUser(){
 
-        usersService.activateUser(userId);
+    }
+
+    @GetMapping(path = "/loginFailed")
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void loginFailed(){
+
     }
 }

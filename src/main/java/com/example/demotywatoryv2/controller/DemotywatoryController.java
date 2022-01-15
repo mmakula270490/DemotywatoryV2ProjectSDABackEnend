@@ -1,9 +1,6 @@
 package com.example.demotywatoryv2.controller;
 
-import com.example.demotywatoryv2.model.dao.get.GetCommentsResponse;
-import com.example.demotywatoryv2.model.dao.get.GetReactionsResponse;
-import com.example.demotywatoryv2.model.dao.get.GetResponse;
-import com.example.demotywatoryv2.model.dao.get.GetResponseList;
+import com.example.demotywatoryv2.model.dao.get.*;
 import com.example.demotywatoryv2.model.dao.post.PostCommentRequest;
 import com.example.demotywatoryv2.model.dao.post.PostCommentResponse;
 import com.example.demotywatoryv2.model.dao.post.PostRequest;
