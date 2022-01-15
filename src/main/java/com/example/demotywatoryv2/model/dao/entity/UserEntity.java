@@ -21,7 +21,7 @@ public class UserEntity {
     private String password;
 
     @Column(name = "active")
-    private boolean active = false;
+    private boolean active = true;
 
     @Column(name = "email", unique=true)
     private String email;
