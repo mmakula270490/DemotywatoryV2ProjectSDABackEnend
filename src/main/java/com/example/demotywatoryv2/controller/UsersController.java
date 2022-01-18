@@ -23,12 +23,12 @@ public class UsersController {
     @GetMapping(path = "/logged")
     @ResponseStatus(HttpStatus.OK)
     public void loggedUser(){
-
+        System.out.println("login succesful");
     }
 
     @GetMapping(path = "/loginFailed")
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public void loginFailed(){
-
+        System.out.println("login unsuccesful");
     }
 }
