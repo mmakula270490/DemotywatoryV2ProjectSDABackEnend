@@ -1,5 +1,6 @@
 package com.example.demotywatoryv2.configuration;
 
+import com.example.demotywatoryv2.model.dto.StorageProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,4 +19,8 @@ public class AppConfig {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    @Bean
+    public StorageProperties getStorageProperties(){
+        return new StorageProperties();
+    }
 }

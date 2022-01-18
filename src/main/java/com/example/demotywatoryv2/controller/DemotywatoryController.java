@@ -10,16 +10,24 @@ import com.example.demotywatoryv2.model.dao.put.UpdateCommentResponse;
 import com.example.demotywatoryv2.model.dao.put.UpdateRequest;
 import com.example.demotywatoryv2.model.dao.put.UpdateResponse;
 import com.example.demotywatoryv2.services.httpservices.*;
+import com.example.demotywatoryv2.services.storage.StorageService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
@@ -43,6 +51,9 @@ public class DemotywatoryController {
     @Autowired
     private UsersService usersService;
 
+    @Autowired
+    private StorageService storageService;
+
     @GetMapping(path = "/api/posts/{postId}")
     public ResponseEntity<GetResponse> getById(@PathVariable(name = "postId")Long postId){
         return new ResponseEntity<GetResponse>(getPostsService.getById(postId), HttpStatus.OK);
@@ -53,10 +64,14 @@ public class DemotywatoryController {
         return new ResponseEntity<GetResponseList>(getPostsService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/api/posts")
-    public ResponseEntity<PostResponse> addNewDemotywator(@Valid @RequestBody PostRequest postRequest){
+    @PostMapping(path = "/api/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> addNewDemotywator(@Valid
+                                                        @RequestPart String topText,
+                                                        @RequestPart String bottomText,
+                                                        @RequestPart MultipartFile image){
 
-        return new ResponseEntity<PostResponse>(createPostsService.addNewDemotywator(postRequest), HttpStatus.CREATED);
+        createPostsService.addNewDemotywator(topText, bottomText, storageService.store(image));
+        return new ResponseEntity<String>("ok", HttpStatus.OK);
     }
 
     @PostMapping(path = "/api/posts/{postId}/reactions/voteUp")

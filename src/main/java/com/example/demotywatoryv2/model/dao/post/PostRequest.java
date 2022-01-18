@@ -4,30 +4,17 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class PostRequest {
+
     private String topText;
 
-    @NotNull
-    @NotEmpty
-    private String imagePath;
-
-    @NotNull
-    @NotEmpty
     private String bottomText;
 
     public String getTopText() {
         return topText;
     }
 
-    public void setTopTex(String topText) {
+    public void setTopText(String topText) {
         this.topText = topText;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public String getBottomText() {

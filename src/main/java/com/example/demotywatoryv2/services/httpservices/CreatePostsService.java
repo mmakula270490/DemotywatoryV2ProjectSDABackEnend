@@ -21,9 +21,12 @@ public class CreatePostsService {
     @Autowired
     private ConvertDemotToRequest demotToPostRequest;
 
-    public PostResponse addNewDemotywator(PostRequest postRequest){
+    public PostResponse addNewDemotywator(String topText,String bottomText, String imagePath){
 
-        DemotywatorEntity newDemotywator = demotToPostRequest.convert(postRequest);
+        DemotywatorEntity newDemotywator = new DemotywatorEntity();
+        newDemotywator.setTopText(topText);
+        newDemotywator.setBottomText(bottomText);
+        newDemotywator.setImagePath(imagePath);
         DemotywatorEntity saved = demotywatorEntityRepository.save(newDemotywator);
         PostResponse postResponse = demotToPostReponse.convert(saved);
 

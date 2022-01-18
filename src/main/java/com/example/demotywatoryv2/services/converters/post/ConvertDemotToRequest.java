@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ConvertDemotToRequest {
-    public DemotywatorEntity convert(PostRequest postRequest) {
+    public DemotywatorEntity convert(PostRequest postRequest, String imagePath) {
 
         DemotywatorEntity newDemotywator = new DemotywatorEntity();
         newDemotywator.setTopText(postRequest.getTopText());
-        newDemotywator.setImagePath(postRequest.getImagePath());
+        newDemotywator.setImagePath(imagePath);
         newDemotywator.setBottomText(postRequest.getBottomText());
 
         return newDemotywator;
